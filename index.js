@@ -18,3 +18,4 @@ if (numero === 4 || numero === 6 || numero === 9 || numero === 11) {
     mostrar.innerHTML = "no se como has llegado aquí";
 }
 
+
