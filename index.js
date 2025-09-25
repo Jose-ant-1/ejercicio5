@@ -33,11 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     do {
         numero = Number(prompt("Introduzca el mes que quiere comprobar (entre 1 y 12)"));
     } while (!comprobarEntradaNumero(numero));
-    const texto = document.querySelectorAll("div > p");
 
-    texto[0].textContent = mesesCon31.join(", ");
-    texto[1].textContent = mesesCon30.join(", ");
+    const mosrtar31Dias = document.getElementById("meses31Dias");
+    const mosrtar30Dias = document.getElementById("meses30Dias");
 
+    mosrtar31Dias.innerHTML = mesesCon31.join("<br>");
+    mosrtar30Dias.innerHTML = mesesCon30.join("<br>");
 
     const mostrar = document.getElementById("mostrar");
     mostrar.innerHTML = `El mes ${numero} es el mes ${nombreMeses[numero - 1]} y tiene ${diasMeses[numero - 1]} días<br>
