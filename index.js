@@ -1,9 +1,6 @@
 console.log('Happy developing ✨')
 
-let numero;
-
-let diasMeses = [31,28,31,30,31,30,31,31,30,31,30,31];
-let nombreMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+let numero; //para tomar el número de mes que vamos a buscar
 
 const meses = [
     {nombre: "Enero", dias: 31},
@@ -18,36 +15,46 @@ const meses = [
     {nombre: "Octubre", dias: 31},
     {nombre: "Noviembre", dias: 30},
     {nombre: "Diciembre", dias: 31}
-]
+] // para guardar todos los meses y sus días correspondientes
 
-let mesesCon30 = filtrarNombreMeses(30);
-let mesesCon31 = filtrarNombreMeses(31);
-let mesCon28 = filtrarNombreMeses(28);
+let mesesCon30 = filtrarNombreMeses(30); //para tomar un array con los nombres de los meses que tienen 30 días
+let mesesCon31 = filtrarNombreMeses(31); //para tomar un array con los nombres de los meses que tienen 31 días
+let mesCon28 = filtrarNombreMeses(28); //para tomar un array con los nombres de los meses que tienen 28 días
 
+//función que filtra los nombres según los días que tenga el mes que buscamos
 function filtrarNombreMeses(numeroDias) {
     return meses.filter(i => i.dias === numeroDias).map(i => i.nombre);
 }
 
+//reacción al evento de cargar la página
 document.addEventListener("DOMContentLoaded", () => {
+    //mostramos por consola que ha cargado al página
     console.log("el documento ha cargado");
+    //bucle para tomar el valor de manera correcta
     do {
         numero = Number(prompt("Introduzca el mes que quiere comprobar (entre 1 y 12)"));
     } while (!comprobarEntradaNumero(numero));
-
+    //constantes para mostrar los meses con 30 y 31 días
+    console.log("El numero introducido a sido" + numero);
+    //tomamos los valores del html para poder mostrarlos
     const mosrtar31Dias = document.getElementById("meses31Dias");
     const mosrtar30Dias = document.getElementById("meses30Dias");
 
+    //con esto pasamos de array a String con un <br> de por medio entre elementos
     mosrtar31Dias.innerHTML = mesesCon31.join("<br>");
     mosrtar30Dias.innerHTML = mesesCon30.join("<br>");
-
+    //guardamos el mes que se ha pedido a observar
+    const mesSeleccionado = meses[numero - 1];
+    //mostramos los datos que hemos procesado
     const mostrar = document.getElementById("mostrar");
-    mostrar.innerHTML = `El mes ${numero} es el mes ${nombreMeses[numero - 1]} y tiene ${diasMeses[numero - 1]} días<br>
-                     Los meses con 30 días son: ${mesesCon30.join(", ")} <br>
-                     Los meses con 31 días son: ${mesesCon31.join(", ")} <br>
+    mostrar.innerHTML = `El mes ${numero} es el mes ${mesSeleccionado.nombre} y tiene ${mesSeleccionado.dias} días<br>
+                     Los meses con 30 días son: ${mesesCon30} <br>
+                     Los meses con 31 días son: ${mesesCon31} <br>
                      El mes con 28 días es: ${mesCon28}`;
 
 });
 
+//funcion que comprueba si el número introducido es correcto
 function comprobarEntradaNumero(numeroAComprobar) {
     return !isNaN(numeroAComprobar) && numeroAComprobar >= 1 && numeroAComprobar <= 12;
 }
